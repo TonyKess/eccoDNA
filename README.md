@@ -61,9 +61,10 @@ done
 
 ### 2. Configure Per Project
 
-Create configs and populate them:
+In your project directory, create a config directory, configs and populate them:
 
 ```bash
+mkdir project/configs
 cp nextflow.generic.config project/configs/nextflow.FISHE.config
 cp nextflow.generic.config project/configs/nextflow.MIFISHU.config
 cp nextflow.generic.config project/configs/nextflow.MCINNES16S.config
