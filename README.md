@@ -106,3 +106,9 @@ Add to command line or edit config:
 --skip_sss_filter     # Skip SSS filtering
 --sss.min_threshold   # SSS threshold (default: 99.0)
 ```
+
+## Development
+
+Built as a Nextflow implementation of the eDNA analysis framework described in 
+[Crowley et al. 2024.](https://doi.org/10.1002/edn3.517). Code structure was templated 
+using Claude 4.5 Sonnet/Haiku and Gemini 3.
