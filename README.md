@@ -53,7 +53,7 @@ Output: `samplesheet.csv` with columns: `sample,read1,read2`
 for DIR in FISHE MIFISHU MCINNES16S ; do
     echo "Processing $DIR..."
     ./create_samplesheet.sh "$DIR"
-    mv samplesheet.csv samplesheet_$(basename $DIR).csv
+    mv samplesheet.csv  $DIR ;
 done
 ```
 
