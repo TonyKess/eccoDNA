@@ -14,7 +14,7 @@ cd eccoDNA
 This downloads all required Apptainer containers to `./containers`.
 
 ## Setup
-This workflow is meant to be run with independent samples and markers, matching the data structure from sequencing output for multple marker eDNA projects. The directory structure is expected to look like:
+This workflow is meant to be run with independent samples and markers, matching the data structure of sequencing output for multi-marker eDNA projects. The directory structure is expected to look like:
 
 ```
 project/
