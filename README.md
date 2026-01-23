@@ -6,7 +6,7 @@ A Nextflow DSL2 pipeline for processing environmental DNA samples through qualit
 ## Installation
 
 ```bash
-git clone <eccoDNA-repo>
+git clone https://github.com/TonyKess/eccoDNA.git
 cd eccoDNA
 ./download_apptainer_images.sh
 ```
@@ -14,31 +14,7 @@ cd eccoDNA
 This downloads all required Apptainer containers to `./containers`.
 
 ## Setup
-
-### 1. Create Sample Sheet
-
-The `create_samplesheet.sh` script generates a CSV from paired-end FASTQ files:
-
-```bash
-./create_samplesheet.sh /path/to/fastq/files
-```
-
-Output: `samplesheet.csv` with columns: `sample,read1,read2`
-
-**Process multiple directories:**
-
-```bash
-#!/bin/bash
-for DIR in /data/project1 /data/project2 /data/project3; do
-    echo "Processing $DIR..."
-    ./create_samplesheet.sh "$DIR"
-    mv samplesheet.csv samplesheet_$(basename $DIR).csv
-done
-```
-
-### 2. Configure Per Project
-
-Create a project directory with marker-specific subdirectories:
+This workflow is meant to be run with independent samples and markers, matching the data structure from sequencing output for multple marker eDNA projects. The directory structure is expected to look like:
 
 ```
 project/
@@ -56,12 +32,32 @@ project/
     ├── nextflow.MIFISHU.config
     └── nextflow.MCINNES16S.config
 ```
+### 1. Create Sample Sheet
+
+The `create_samplesheet.sh` script generates a CSV from paired-end FASTQ files:
+
+```bash
+./create_samplesheet.sh /path/to/fastq/files
+```
+
+Output: `samplesheet.csv` with columns: `sample,read1,read2`
+
+**Process multiple directories:**
+
+```bash
+#!/bin/bash
+for DIR in FISHE MIFISHU MCINNES16S ; do
+    echo "Processing $DIR..."
+    ./create_samplesheet.sh "$DIR"
+    mv samplesheet.csv samplesheet_$(basename $DIR).csv
+done
+```
+
+### 2. Configure Per Project
 
 Create configs and populate them:
 
 ```bash
-mkdir -p project/{FISHE,MIFISHU,MCINNES16S}
-mkdir -p project/configs
 cp nextflow.generic.config project/configs/nextflow.FISHE.config
 cp nextflow.generic.config project/configs/nextflow.MIFISHU.config
 cp nextflow.generic.config project/configs/nextflow.MCINNES16S.config
