@@ -33,6 +33,12 @@ project/
     └── nextflow.MCINNES16S.config
 ```
 ### 1. Create Sample Sheet
+First, copy the helper scripts to your working directory:
+```bash
+cp joblauncher.eccodna.sh project/
+cp multisheet.sh  project/
+cp submit.eccodna.customconfig.sh project/
+```
 
 The `create_samplesheet.sh` script generates a CSV from paired-end FASTQ files:
 
