@@ -35,9 +35,8 @@ project/
 ### 1. Create Sample Sheet
 First, copy the helper scripts to your working directory:
 ```bash
-cp joblauncher.eccodna.sh project/
+cp creates_samplesheet.sh project/
 cp multisheet.sh  project/
-cp submit.eccodna.customconfig.sh project/
 ```
 
 The `create_samplesheet.sh` script generates a CSV from paired-end FASTQ files:
@@ -80,6 +79,11 @@ Edit each `project/configs/nextflow.MARKER.config` and change:
 - `clusterOptions` - SLURM account, partition, comment
 
 ### 3. Configure Job Submission
+Copy the helper scripts to your project directory
+```bash
+cp submit.eccodna.customconfig.sh project/
+cp joblauncher.eccodna.sh project/
+```
 
 Edit `submit.eccodna.customconfig.sh`:
 - `--account`, `--partition`, `--comment` - SLURM options
