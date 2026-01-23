@@ -1,6 +1,5 @@
 # eccoDNA: eDNA Metabarcoding Workflow
-![eccoDNA](![eccoDNA](https://github.com/user-attachments/assets/b42f16e7-d59f-40ed-b919-88388b3eedb2)
-)
+![eccoDNA](![eccoDNA](https://github.com/user-attachments/assets/b42f16e7-d59f-40ed-b919-88388b3eedb2))
 
 A Nextflow DSL2 pipeline for processing environmental DNA samples through quality control, denoising, chimera removal, and taxonomic assignment.
 
