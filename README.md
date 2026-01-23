@@ -36,7 +36,6 @@ project/
 First, copy the helper scripts to your working directory:
 ```bash
 cp creates_samplesheet.sh project/
-cp multisheet.sh  project/
 ```
 
 The `create_samplesheet.sh` script generates a CSV from paired-end FASTQ files:
