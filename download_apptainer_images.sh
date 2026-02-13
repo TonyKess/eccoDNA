@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Define the target directory for containers, defaults to where ecoDNAflow is 
+# Define the target directory for containers, defaults to where eccoDNA is 
 CONTAINER_DIR="./containers"
 mkdir -p $CONTAINER_DIR
 
