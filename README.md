@@ -33,6 +33,10 @@ project/
     └── nextflow.MCINNES16S.config
 ```
 ### 1. Create Sample Sheet
+First, copy the helper scripts to your working directory:
+```bash
+cp creates_samplesheet.sh project/
+```
 
 The `create_samplesheet.sh` script generates a CSV from paired-end FASTQ files:
 
@@ -49,15 +53,16 @@ Output: `samplesheet.csv` with columns: `sample,read1,read2`
 for DIR in FISHE MIFISHU MCINNES16S ; do
     echo "Processing $DIR..."
     ./create_samplesheet.sh "$DIR"
-    mv samplesheet.csv samplesheet_$(basename $DIR).csv
+    mv samplesheet.csv  $DIR ;
 done
 ```
 
 ### 2. Configure Per Project
 
-Create configs and populate them:
+In your project directory, create a config directory, configs and populate them:
 
 ```bash
+mkdir project/configs
 cp nextflow.generic.config project/configs/nextflow.FISHE.config
 cp nextflow.generic.config project/configs/nextflow.MIFISHU.config
 cp nextflow.generic.config project/configs/nextflow.MCINNES16S.config
@@ -73,6 +78,11 @@ Edit each `project/configs/nextflow.MARKER.config` and change:
 - `clusterOptions` - SLURM account, partition, comment
 
 ### 3. Configure Job Submission
+Copy the helper scripts to your project directory
+```bash
+cp submit.eccodna.customconfig.sh project/
+cp joblauncher.eccodna.sh project/
+```
 
 Edit `submit.eccodna.customconfig.sh`:
 - `--account`, `--partition`, `--comment` - SLURM options
