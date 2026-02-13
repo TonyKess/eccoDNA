@@ -3,8 +3,9 @@ nextflow.enable.dsl=2
 
 /*
 ========================================================================================
-    eccoDNA - an eDNA metabarcoding workflow - Nextflow DSL2
+    eccoDNA - Nextflow DSL2
 ========================================================================================
+    Author: Your Name
     Usage:
         nextflow run main.nf -c nextflow.config --input samplesheet.csv --marker FISHE
 ========================================================================================
@@ -14,7 +15,7 @@ nextflow.enable.dsl=2
 def helpMessage() {
     log.info"""
     ========================================
-    eDNA Metabarcoding Pipeline
+    eccoDNA Metabarcoding Pipeline
     ========================================
     Usage:
         nextflow run main.nf -c nextflow.config \\
@@ -120,6 +121,7 @@ process QUALITY_FILTER {
             --fastq_minlen ${params.vsearch.min_len} \\
             --fastq_maxlen ${params.vsearch.max_len} \\
             --relabel ${sample}. \\
+            --sample ${sample} \\
             --fastaout ${sample}.filtered.fasta \\
             > ${sample}.filter.log 2>&1
     """
