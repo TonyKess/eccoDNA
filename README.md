@@ -14,7 +14,8 @@ cd eccoDNA
 This downloads all required Apptainer containers to `./containers`.
 
 ## Setup
-This workflow is meant to be run with independent samples and markers, matching the data structure of sequencing output for multi-marker eDNA projects. The directory structure is expected to look like:
+This workflow is meant to be run with independent samples and markers, matching the data structure of sequencing output for multi-marker eDNA projects. The directory structure is expected to look like, where each directory
+is a separate sequencing run of a unique eDNA primer
 
 ```
 project/
@@ -27,10 +28,7 @@ project/
 ├── MCINNES16S/
 │   ├── samplesheet.csv
 │   └── nextflow.MCINNES16S.config
-└── configs/
-    ├── nextflow.FISHE.config
-    ├── nextflow.MIFISHU.config
-    └── nextflow.MCINNES16S.config
+
 ```
 ### 1. Create Sample Sheet
 First, copy the helper scripts to your working directory:
@@ -63,13 +61,12 @@ In your project directory, create a config directory, configs and populate them:
 
 ```bash
 mkdir project/configs
-cp nextflow.generic.config project/configs/nextflow.FISHE.config
-cp nextflow.generic.config project/configs/nextflow.MIFISHU.config
-cp nextflow.generic.config project/configs/nextflow.MCINNES16S.config
+cp nextflow.generic.config project/FISHE/nextflow.config
+cp nextflow.generic.config project/MIFISHU/nextflow.config
+cp nextflow.generic.config project/MCINNES16S/nextflow.config
 ```
 
 Edit each `project/configs/nextflow.MARKER.config` and change:
-- `workDir` - set to project-specific path (e.g., `/path/to/project/FISHE`)
 - `project_name` - descriptive name
 - `marker` - marker name (FISHE, MIFISHU, etc.)
 - `container_base` - path to containers directory
@@ -80,8 +77,9 @@ Edit each `project/configs/nextflow.MARKER.config` and change:
 ### 3. Configure Job Submission
 Copy the helper scripts to your project directory
 ```bash
-cp submit.eccodna.customconfig.sh project/
-cp joblauncher.eccodna.sh project/
+cp submit.eccodna.customconfig.sh project/FISHE
+cp submit.eccodna.customconfig.sh project/MIFISHU
+cp submit.eccodna.customconfig.sh project/MCINNES16S
 ```
 
 Edit `submit.eccodna.customconfig.sh`:
@@ -91,13 +89,11 @@ Edit `submit.eccodna.customconfig.sh`:
 
 ### 4. Submit Jobs
 
-Run all configured markers at once:
+For any marker, in the project/marker directory, do:
 
 ```bash
-./joblauncher.eccodna.sh
+./submit.eccodna.customconfig.sh
 ```
-
-The launcher searches `project/configs/` for all `.config` files and submits a job for each using `submit.eccodna.customconfig.sh`.
 
 ## Outputs
 
@@ -121,4 +117,4 @@ Add to command line or edit config:
 
 Built as a Nextflow implementation of the eDNA analysis framework described in 
 [Crowley et al. 2024.](https://doi.org/10.1002/edn3.517). Code structure was templated 
-using Claude 4.5 Sonnet/Haiku and Gemini 3.
+using Claude 4.5 Sonnet/Haiku and Gemini 3, ChatGPT 5.0.
