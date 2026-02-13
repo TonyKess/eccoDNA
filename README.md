@@ -89,11 +89,15 @@ Edit `submit.eccodna.customconfig.sh`:
 
 ### 4. Submit Jobs
 
-For any marker, in the project/marker directory, do:
+For any marker, in the project/marker directory, for HPC SLURM submission do:
 
 ```bash
-./submit.eccodna.customconfig.sh
+sbatch submit.eccodna.customconfig.sh
 ```
+If custom configs have been renamed, they can be specified directly in job submission with
+```bash
+sbatch --export=ALL,CONFIG_FILE=nextflow.FISHE.config submit.eccodna.customconfig.sh
+'''
 
 ## Outputs
 
