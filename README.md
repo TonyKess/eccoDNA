@@ -42,6 +42,12 @@ The `create_samplesheet.sh` script generates a CSV from paired-end FASTQ files:
 ./create_samplesheet.sh /path/to/fastq/files
 ```
 
+Or if in the project and marker directories already:
+
+```bash
+./create_samplesheet.sh .
+```
+
 Output: `samplesheet.csv` with columns: `sample,read1,read2`
 
 **Process multiple directories:**
@@ -57,7 +63,7 @@ done
 
 ### 2. Configure Per Project
 
-In your project directory, create a config directory, configs and populate them:
+In your project directory, copy a nextflow config to each directory (you can rename them if you'd like):
 
 ```bash
 mkdir project/configs
@@ -94,7 +100,7 @@ For any marker, in the project/marker directory, for HPC SLURM submission do:
 ```bash
 sbatch submit.eccodna.customconfig.sh
 ```
-If custom configs have been renamed, they can be specified directly in job submission with
+If custom configs have been renamed from nextflow.config, they can be specified directly in job submission with
 ```bash
 sbatch --export=ALL,CONFIG_FILE=nextflow.FISHE.config submit.eccodna.customconfig.sh
 '''
@@ -121,4 +127,4 @@ Add to command line or edit config:
 
 Built as a Nextflow implementation of the eDNA analysis framework described in 
 [Crowley et al. 2024.](https://doi.org/10.1002/edn3.517). Code structure was templated 
-using Claude 4.5 Sonnet/Haiku and Gemini 3, ChatGPT 5.0.
+using Claude 4.5 Sonnet/Haiku, Gemini 3, ChatGPT 5.0.
